@@ -13,7 +13,7 @@ datasources:
           avatar-uri: https://robohash.org/aloha
           progress: 0.54
           value: 115000
-          status: Progress
+          status: inProgress
           result:
           reason:
           badge: "off"
@@ -25,7 +25,7 @@ datasources:
           avatar-uri:
           progress: 0.6
           value: 107000
-          status: Progress
+          status: inProgress
           result:
           reason:
           badge: "off"
@@ -47,7 +47,7 @@ datasources:
           avatar-uri:
           progress: 0.21
           value: 102500
-          status: Progress
+          status: inProgress
           result:
           reason:
           badge: "off"
@@ -69,7 +69,7 @@ datasources:
           avatar-uri:
           progress: 0.45
           value: 98000
-          status: Progress
+          status: inProgress
           result:
           reason:
           badge: "off"
@@ -80,7 +80,7 @@ datasources:
           avatar-uri:
           progress: 0.8
           value: 56000
-          status: Progress
+          status: inProgress
           result:
           reason:
           badge: "off"
@@ -91,7 +91,7 @@ datasources:
           avatar-uri:
           progress: 0.22
           value: 37000
-          status: Progress
+          status: inProgress
           result:
           reason:
           badge: "off"
@@ -103,7 +103,7 @@ datasources:
           progress: 0.78
           value: 154000
           status: Finished
-          result: Unsuccess
+          result: Unsuccessful
           reason: Stopped Because Of High Price
           badge: "on"
         - name: Jacobs Engineering Group
@@ -136,7 +136,7 @@ filter:
   - title: Won
     value: Success
   - title: Lost
-    value: Unsuccess
+    value: Unsuccessful
 
 summary:
   children:
@@ -145,7 +145,7 @@ summary:
       layout: counter
       value: =$count(@ctx.datasources.components)
       title: Opportunities
-      subtitle: ="Worth than" & " $ " & $sum(@ctx.datasources.components.value)
+      subtitle: ="Worth" & " $ " & $sum(@ctx.datasources.components.value)
 
 data: =$filter(@ctx.datasources.components, function($v, $i, $a) {  @ctx.jig.state.filter = 'ALL' or $v.result = @ctx.jig.state.filter})
 item:
@@ -161,7 +161,7 @@ item:
       element: checkbox
       value: =(@ctx.current.item.status= 'Finished' ? true :false)
     style:
-      isError: =(@ctx.current.item.result= 'Unsuccess' ? true :false)
+      isError: =(@ctx.current.item.result= 'Unsuccessful' ? true :false)
       isStrikeThrough: =(@ctx.current.item.status= 'Finished' ? true :false)
     rightElement:
       element: value
